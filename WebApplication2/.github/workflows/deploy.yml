@@ -16,7 +16,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Publish project
-        run: dotnet publish -c Release -o ./publish
+        run: dotnet publish ./WebApplication2/WebApplication2.csproj -c Release -o ./publish_output
 
       - name: Deploy to Server via SSH
         uses: appleboy/scp-action@master
@@ -24,7 +24,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "./publish/*"
+          source: "./publish_output/*"
           target: "/var/www/my-app" # Путь к папке приложения на сервере
           strip_components: 1
 
