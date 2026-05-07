@@ -1,0 +1,25 @@
+@model WebApplication2.Models.Recipe
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div>
+    <h1>@Model.Title</h1>
+    <p class="text-muted">Страна: @Model.Country | Время: @Model.CookingTime мин.</p>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Ингредиенты:</h5>
+            <p style="white-space: pre-line">@Model.Ingredients</p>
+        </div>
+        <div class="col-md-8">
+            <h5>Инструкция по приготовлению:</h5>
+            <p style="white-space: pre-line">@Model.CookingSteps</p>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Изменить</a>
+    <a asp-action="Recipes" class="btn btn-secondary">К списку</a>
+</div>

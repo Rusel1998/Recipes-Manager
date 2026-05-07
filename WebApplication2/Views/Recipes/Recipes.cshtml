@@ -1,0 +1,62 @@
+@model IEnumerable<WebApplication2.Models.Recipe>
+
+@{
+    ViewData["Title"] = "Мои рецепты";
+}
+
+<h2>Мои рецепты</h2>
+
+@if (!Model.Any())
+{
+    <p>Пока рецептов нет. <a href="/Recipes/AddRecipe">Добавить первый рецепт</a></p>
+}
+else
+{
+    <!-- ФОРМА ПОИСКА -->
+    <form asp-action="Recipes" method="get" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" name="searchString" placeholder="Название рецепта..." class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <select name="recipeCountry" class="form-control">
+                    <option value="">Все страны</option>
+                    @foreach (var cat in ViewBag.Categories)
+                    {
+                        <option value="@cat">@cat</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-info">Найти</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                <th>@Html.DisplayNameFor(model => model.Country)</th>
+                <th>@Html.DisplayNameFor(model => model.CookingTime) (мин)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Country)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CookingTime)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Просмотр</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+    

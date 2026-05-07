@@ -1,0 +1,44 @@
+@model WebApplication2.Models.Recipe
+@{
+    ViewData["Title"] = "Добавить рецепт";
+}
+
+<h4>Новый рецепт</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="AddRecipe">
+            <div class="form-group mb-3">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Ingredients" class="control-label"></label>
+                <textarea asp-for="Ingredients" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Ingredients" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="CookingSteps" class="control-label"></label>
+                <textarea asp-for="CookingSteps" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="CookingSteps" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="CookingTime" class="control-label"></label>
+                <input asp-for="CookingTime" class="form-control" type="number" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Создать" class="btn btn-success" />
+                <a asp-action="Posts" class="btn btn-secondary">Назад к списку</a>
+            </div>
+        </form>
+    </div>
+</div>

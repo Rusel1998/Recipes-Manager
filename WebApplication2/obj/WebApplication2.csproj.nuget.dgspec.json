@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Asus\\RiderProjects\\WebApplication2\\WebApplication2\\WebApplication2.csproj": {}
+    "D:\\IBRAE\\ASP.NET_Core_course\\shift_asp\\WebApplication2\\WebApplication2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Asus\\RiderProjects\\WebApplication2\\WebApplication2\\WebApplication2.csproj": {
+    "D:\\IBRAE\\ASP.NET_Core_course\\shift_asp\\WebApplication2\\WebApplication2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\RiderProjects\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
+        "projectUniqueName": "D:\\IBRAE\\ASP.NET_Core_course\\shift_asp\\WebApplication2\\WebApplication2.csproj",
         "projectName": "WebApplication2",
-        "projectPath": "C:\\Users\\Asus\\RiderProjects\\WebApplication2\\WebApplication2\\WebApplication2.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\RiderProjects\\WebApplication2\\WebApplication2\\obj\\",
+        "projectPath": "D:\\IBRAE\\ASP.NET_Core_course\\shift_asp\\WebApplication2\\WebApplication2.csproj",
+        "packagesPath": "C:\\Users\\Ruslan\\.nuget\\packages\\",
+        "outputPath": "D:\\IBRAE\\ASP.NET_Core_course\\shift_asp\\WebApplication2\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ruslan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +30,7 @@
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -43,6 +48,7 @@
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Design": {
@@ -81,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.420/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
