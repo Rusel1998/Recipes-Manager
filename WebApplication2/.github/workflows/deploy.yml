@@ -16,7 +16,11 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Publish project
-        run: dotnet publish ./WebApplication2/WebApplication2.csproj -c Release -o ./publish_output
+        # Используем абсолютный путь через переменную $GITHUB_WORKSPACE
+        run: |
+          dotnet publish WebApplication2/WebApplication2.csproj -c Release -o ${{ github.workspace }}/publish_output
+          echo "Содержимое папки публикации:"
+          ls -R ${{ github.workspace }}/publish_output
 
       - name: Deploy to Server via SSH
         uses: appleboy/scp-action@master
@@ -24,8 +28,9 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "./publish_output/*"
-          target: "/var/www/my-app" # Путь к папке приложения на сервере
+          # Используем путь без лишних точек
+          source: "publish_output/*"
+          target: "/var/www/my-app"
           strip_components: 1
 
       - name: Restart Application
