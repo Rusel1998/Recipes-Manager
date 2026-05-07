@@ -2,5 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>https</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>D:\IBRAE\ASP.NET_Core_course\shift_asp\.github\workflows\deploy.yml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
