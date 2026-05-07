@@ -1,7 +1,8 @@
 name: Deploy to Beget
+
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master" ] # Проверьте, что в GitHub ветка именно master!
 
 jobs:
   build-and-deploy:
@@ -10,24 +11,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: List files in repository
-        # Эта команда покажет ВСЕ файлы, которые видит GitHub. 
-        # Мы точно узнаем правильный путь к .csproj
-        run: find . -maxdepth 3 -not -path '*/.*'
+      # 1. Диагностика (поможет нам увидеть структуру папок)
+      - name: Show structure
+        run: ls -R
 
+      # 2. Настройка .NET
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
+      # 3. Публикация (создаем папку publish_output)
       - name: Publish project
-        run: |
-          # Мы используем wildcard (звездочку), чтобы .NET сам нашел проект в папке
-          dotnet publish WebApplication2/*.csproj -c Release -o ./publish_output
-          echo "Проверка содержимого после публикации:"
-          ls -la ./publish_output
+        run: dotnet publish WebApplication2/WebApplication2.csproj -c Release -o ./publish_output
 
-      - name: Deploy to Server via SSH
+      # 4. Проверка, что файлы создались (для логов)
+      - name: Check publish folder
+        run: ls -la ./publish_output
+
+      # 5. Копирование на сервер
+      - name: Deploy via SCP
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SERVER_IP }}
@@ -36,3 +39,12 @@ jobs:
           source: "publish_output/*"
           target: "/var/www/my-app"
           strip_components: 1
+
+      # 6. Перезапуск службы на сервере
+      - name: Restart Service
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: sudo systemctl restart myapp.service
